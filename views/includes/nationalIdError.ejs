@@ -1,0 +1,7 @@
+<div class="invalidFeedback">
+        <% errors.forEach(item => { %>
+                <% if(item.search("national ID") !== -1) { %>
+                        <p><%= item %></p>
+                <% } %>
+        <% }) %>
+</div>

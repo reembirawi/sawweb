@@ -1,0 +1,7 @@
+<div class="invalidFeedback">
+        <% errors.forEach(item => { %>
+                <% if(item.search("email") !== -1) { %>
+                        <p><%= item %></p>
+                <% } %>
+        <% }) %>
+</div>

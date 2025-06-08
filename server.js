@@ -28,21 +28,26 @@ const createTables = db.transaction(() => {
 
                 `
         ).run();
-});
-
-/*
-Creates a users table if it doesn’t exist.
-
-id: auto-increment primary key.
-
-username: must be unique and not null.
-
-password: stores hashed password.
-*/
+});  
 
 createTables();
 // database end here
  
+
+app.use((req, res, next) => { // middleware to solve "errors no defined" problem
+        res.locals.errors = [];
+
+        try {
+                const decoded = jwt.verify(req.cookies.ourSimpleApp, process.env.JWTSECRET);
+                req.user = decoded;
+        } catch (err) {
+                req.user = false;
+        }
+
+        res.locals.user = req.user; // res.locals should exist here
+        console.log(req.user);
+        next();
+})
 
 app.get("/", (req, res) => { // "/" -> root of my project
         if(req.user) {
@@ -50,8 +55,9 @@ app.get("/", (req, res) => { // "/" -> root of my project
         } 
         res.render('login'); // render homepage
 });
+
 app.get("/homepage", (req, res) => {
-    res.render("homepage");
+        res.render("homepage");
 });
 
 
@@ -146,17 +152,17 @@ app.post("/signup", (req, res) => {
 
         // Issue login token
         const token = jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
-        userid: user.id,
-        national_id: user.national_id,
-        email: user.email
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
+            userid: user.id,
+            national_id: user.national_id,
+            email: user.email
         }, process.env.JWTSECRET);
 
         res.cookie("ourSimpleApp", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-        maxAge: 1000 * 60 * 60 * 24
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 1000 * 60 * 60 * 24
         });
 
         res.redirect("/");
@@ -164,4 +170,4 @@ app.post("/signup", (req, res) => {
 
 
 
-app.listen(5001);
+app.listen(5000);
