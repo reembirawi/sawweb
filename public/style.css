@@ -1,9 +1,58 @@
+:root {
+        --clr-primary-1: hsl(205, 86%, 17%);
+        --clr-primary-2: hsl(205, 77%, 27%);
+        --clr-primary-3: hsl(205, 72%, 37%);
+        --clr-primary-4: hsl(205, 63%, 48%);
+        --clr-primary-5: hsl(205, 78%, 60%);
+        --clr-primary-6: hsl(205, 89%, 70%);
+        --clr-primary-7: hsl(205, 90%, 76%);
+        --clr-primary-8: hsl(205, 86%, 81%);
+        --clr-primary-9: hsl(205, 90%, 88%);
+        --clr-primary-10: hsl(205, 100%, 96%);
+        --clr-grey-1: hsl(209, 61%, 16%);
+        --clr-grey-2: hsl(211, 39%, 23%);
+        --clr-grey-3: hsl(209, 34%, 30%);
+        --clr-grey-4: hsl(209, 28%, 39%);
+        --clr-grey-5: hsl(210, 22%, 49%);
+        --clr-grey-6: hsl(209, 23%, 60%);
+        --clr-grey-7: hsl(211, 27%, 70%);
+        --clr-grey-8: hsl(210, 31%, 80%);
+        --clr-grey-9: hsl(212, 33%, 89%);
+        --clr-grey-10: hsl(210, 36%, 96%);
+        --clr-white: #fff;
+        --clr-red-dark: hsl(360, 67%, 44%);
+        --clr-red-light: hsl(360, 71%, 66%);
+        --clr-green-dark: hsl(125, 67%, 44%);
+        --clr-green-light: hsl(125, 71%, 66%);
+        --clr-black: #222;
+        --ff-primary: 'Roboto', sans-serif;
+        --ff-secondary: 'Open Sans', sans-serif;
+        --transition: all 0.3s linear;
+        --spacing: 0.1rem;
+        --radius: 0.25rem;
+        --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        --max-width: 1170px;
+        --fixed-width: 620px;
+}
+
+
 .sawwebColor {
         color:#002d66;
 }
 
 .textFont {
         font-family: 'Cairo';
+        font-size: 1.5rem;
+        transition: var(--transition);
+} 
+
+.textFont:hover {
+       font-size: 1.7;
+} 
+.textDirc {
+        direction: rtl;
+        text-align: right;
 }
 .login-logo {
       width: 250px;
@@ -15,3 +64,91 @@
 .invalidFeedback{
         color:#720d12;
 }
+
+.iconHover:hover{ 
+        color: var(--clr-primary-7);
+}
+
+.log-in-btn, .sign-up-btn {
+        color: white;
+        background-color:#002d66;
+        transition: var(--transition);
+
+}
+
+.log-in-btn, .sign-up-btn:hover { 
+        color: #fff;
+        font-size: 1.7rem;
+        background-color: var(--clr-primary-3);
+
+}
+
+.header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 100px; /* adjust as needed */
+        /*background-color: white; or whatever background fits your design*/
+        /*box-shadow: 0 2px 5px rgba(0,0,0,0.1); optional, for slight shadow*/
+        display: flex;
+        align-items: center;
+        padding: 0 20px; 
+        transition: var(--transition);
+        z-index: 998; 
+}
+
+ 
+.header:hover {
+        font-size: 2.8rem;
+       
+} 
+
+  
+/* Fullscreen semi-transparent background */
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show the overlay */
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Popup styling */
+.pop-up-window {
+  position: fixed;
+  width: 40%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  background-color: white; 
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  text-align: right;
+   padding: 2rem;
+} 
+
+/* Slide in */
+.pop-up-window.show {
+  transform: translate(-50%, -50%);
+}
+
+ 
+
+ 

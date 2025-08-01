@@ -63,6 +63,7 @@ const seedMockData = db.transaction(() => {
         insertPost.run("عطل في الإضاءة", "أعمدة الإنارة في الحي لا تعمل منذ أيام، مما يسبب ظلامًا تامًا ليلاً ويعرض السكان للخط", 2, now); 
 }); 
 
+seedMockData()
 
 const createMockComplaints = db.transaction(() => {
         db.prepare(`
